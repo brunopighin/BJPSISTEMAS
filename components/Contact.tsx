@@ -60,7 +60,7 @@ export default function Contact() {
       <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-violet-DEFAULT/8 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-electric-cyan/6 rounded-full blur-[100px] pointer-events-none" />
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6">
+      <div ref={ref} className="relative max-w-7xl mx-auto px-6 lg:pl-52">
         {/* Title */}
         <div className="text-center mb-16">
           <motion.div

@@ -16,7 +16,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -28,55 +28,92 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -64, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-bg/90 backdrop-blur-xl"
-            : "bg-transparent"
-        }`}
+      {/* Logo flotante */}
+      <motion.a
+        href="#hero"
+        onClick={(e) => { e.preventDefault(); handleNav("#hero"); }}
+        className="fixed top-0 left-6 z-50 flex items-center"
+        style={{ height: "200px" }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        whileHover={{ scale: 1.05 }}
       >
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: "200px" }}>
-          {/* Logo */}
-          <motion.a
-            href="#hero"
-            onClick={(e) => { e.preventDefault(); handleNav("#hero"); }}
-            className="flex items-center"
-            whileHover={{ scale: 1.02 }}
-          >
-            <img
-              src="/logo-transparent.png"
-              alt="BJP Sistemas"
-              className="logo-navbar"
-            />
-          </motion.a>
+        <motion.img
+          src="/logo-transparent.png"
+          alt="BJP Sistemas"
+          className="logo-navbar"
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.a>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-7">
+      {/* Links horizontales — solo cuando NO scrolleó */}
+      <AnimatePresence>
+        {!scrolled && (
+          <motion.div
+            key="horizontal"
+            className="fixed top-0 right-8 z-50 hidden md:flex flex-row items-center gap-7"
+            style={{ height: "200px" }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNav(link.href); }}
-                className="text-sm text-text-muted hover:text-text transition-colors duration-200"
+                className="text-sm text-text-muted hover:text-text transition-colors duration-200 whitespace-nowrap"
               >
                 {link.label}
               </a>
             ))}
-          </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-
-          {/* Mobile toggle */}
-          <button
-            className="md:hidden text-text-muted hover:text-text transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
+      {/* Links verticales — solo cuando scrolleó */}
+      <AnimatePresence>
+        {scrolled && (
+          <motion.div
+            key="vertical"
+            className="fixed top-1/2 right-8 z-50 hidden md:flex flex-col items-end gap-5"
+            style={{ transform: "translateY(-50%)" }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.3 }}
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </motion.nav>
+            {navLinks.map((link, i) => (
+              <motion.a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => { e.preventDefault(); handleNav(link.href); }}
+                className="text-sm text-text-muted hover:text-text transition-colors duration-200 whitespace-nowrap"
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.05 }}
+              >
+                {link.label}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Botón mobile */}
+      <motion.button
+        className="fixed top-0 right-6 z-50 md:hidden text-text-muted hover:text-text transition-colors flex items-center"
+        style={{ height: "200px" }}
+        onClick={() => setMobileOpen(!mobileOpen)}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+      </motion.button>
 
       {/* Mobile menu */}
       <AnimatePresence>
@@ -86,7 +123,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-bg-secondary/95 backdrop-blur-xl border-b border-white/6 px-6 py-5"
+            className="fixed top-16 left-0 right-0 z-40 bg-bg-secondary/95 backdrop-blur-xl px-6 py-5"
           >
             <div className="flex flex-col gap-1">
               {navLinks.map((link, i) => (

@@ -226,7 +226,7 @@ export default function Portfolio() {
       <div className="absolute inset-0 bg-[#050508]" />
       <div className="absolute inset-0 grid-pattern opacity-15" />
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6">
+      <div ref={ref} className="relative max-w-7xl mx-auto px-6 lg:pl-52">
         {/* Title */}
         <div className="text-center mb-16">
           <motion.div
@@ -262,7 +262,7 @@ export default function Portfolio() {
         </div>
 
         {/* Projects grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {projects.map((project, i) => {
             const Icon = project.icon;
             return (
@@ -275,7 +275,7 @@ export default function Portfolio() {
                 whileHover={{ y: -6, boxShadow: `0 20px 60px ${project.accent}25` }}
               >
                 {/* Mockup preview */}
-                <div className={`relative h-40 sm:h-48 bg-gradient-to-br ${project.bg} overflow-hidden`}>
+                <div className={`relative h-32 sm:h-36 bg-gradient-to-br ${project.bg} overflow-hidden`}>
                   {/* Grid pattern inside */}
                   <div className="absolute inset-0 grid-pattern opacity-30" />
 
@@ -299,7 +299,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Content */}
-                <div className="p-5">
+                <div className="p-4">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <div

@@ -45,7 +45,7 @@ export default function Process() {
       <div className="absolute inset-x-0 top-0 h-px section-divider" />
       <div className="absolute inset-x-0 bottom-0 h-px section-divider" />
 
-      <div ref={ref} className="relative max-w-6xl mx-auto px-6">
+      <div ref={ref} className="relative max-w-6xl mx-auto px-6 lg:pl-52">
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div
