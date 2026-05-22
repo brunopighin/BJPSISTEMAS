@@ -32,8 +32,8 @@ export default function Navbar() {
       <motion.a
         href="#hero"
         onClick={(e) => { e.preventDefault(); handleNav("#hero"); }}
-        className="fixed top-0 left-6 z-50 flex items-center"
-        style={{ height: "200px" }}
+        className="fixed top-0 left-4 z-50 flex items-center"
+        style={{ height: "clamp(80px, 15vw, 200px)" }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -105,8 +105,8 @@ export default function Navbar() {
 
       {/* Botón mobile */}
       <motion.button
-        className="fixed top-0 right-6 z-50 md:hidden text-text-muted hover:text-text transition-colors flex items-center"
-        style={{ height: "200px" }}
+        className="fixed top-0 right-4 z-50 md:hidden text-text-muted hover:text-text transition-colors flex items-center"
+        style={{ height: "clamp(80px, 15vw, 200px)" }}
         onClick={() => setMobileOpen(!mobileOpen)}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

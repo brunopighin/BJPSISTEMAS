@@ -73,7 +73,7 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-24"
+        className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-24 md:pt-52"
         variants={container}
         initial="hidden"
         animate="visible"
