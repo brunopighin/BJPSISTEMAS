@@ -1,8 +1,9 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
+  const [isTouchDevice, setIsTouchDevice] = useState(true);
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
 
@@ -10,6 +11,7 @@ export default function CustomCursor() {
   const springY = useSpring(y, { damping: 28, stiffness: 400, mass: 0.3 });
 
   useEffect(() => {
+    setIsTouchDevice(window.matchMedia("(pointer: coarse)").matches);
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
@@ -17,6 +19,8 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
   }, [x, y]);
+
+  if (isTouchDevice) return null;
 
   return (
     <>
