@@ -4,7 +4,10 @@ import { Github, Instagram, Linkedin } from "lucide-react";
 
 const links = {
   servicios: ["Páginas Web", "E-commerce", "Software a Medida", "Sistemas POS", "IA", "Automatización"],
-  empresa:   ["Sobre nosotros", "Portfolio", "Contacto"],
+  empresa:   [
+    { label: "Portfolio", href: "#portfolio" },
+    { label: "Contacto",  href: "#contacto" },
+  ],
 };
 
 export default function Footer() {
@@ -75,9 +78,12 @@ export default function Footer() {
               <h4 className="text-xs font-semibold text-text uppercase tracking-wider mb-4">Empresa</h4>
               <ul className="space-y-2.5">
                 {links.empresa.map((link) => (
-                  <li key={link}>
-                    <button className="text-sm text-text-muted hover:text-text transition-colors duration-200 text-left">
-                      {link}
+                  <li key={link.label}>
+                    <button
+                      onClick={() => handleNav(link.href)}
+                      className="text-sm text-text-muted hover:text-text transition-colors duration-200 text-left"
+                    >
+                      {link.label}
                     </button>
                   </li>
                 ))}
