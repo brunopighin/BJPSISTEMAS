@@ -35,8 +35,8 @@ export default function Navbar() {
         className="fixed top-0 left-4 z-50 flex items-center"
         style={{ height: "clamp(80px, 15vw, 200px)" }}
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -20 : 0 }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
         whileHover={{ scale: 1.05 }}
       >
         <motion.img
