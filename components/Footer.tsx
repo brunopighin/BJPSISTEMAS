@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Zap, Github, Instagram, Linkedin } from "lucide-react";
+import { Github, Instagram, Linkedin } from "lucide-react";
 
 const links = {
   servicios: ["Páginas Web", "E-commerce", "Software a Medida", "Sistemas POS", "IA", "Automatización"],
@@ -22,13 +22,12 @@ export default function Footer() {
 
             {/* Brand */}
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-violet-DEFAULT/15 border border-violet-DEFAULT/25 rounded-lg flex items-center justify-center">
-                  <Zap size={16} className="text-violet-light" />
-                </div>
-                <span className="font-bold text-base text-text">
-                  BJP <span className="gradient-text">SISTEMAS</span>
-                </span>
+              <div className="mb-4">
+                <img
+                  src="/logo-transparent.png"
+                  alt="BJP Sistemas"
+                  className="logo-footer"
+                />
               </div>
               <p className="text-text-muted text-sm leading-relaxed max-w-xs mb-5">
                 Transformamos ideas en sistemas inteligentes. Tecnología de alto nivel para empresas modernas.

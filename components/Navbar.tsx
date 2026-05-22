@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Inicio",    href: "#hero" },
@@ -38,20 +38,19 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: "200px" }}>
           {/* Logo */}
           <motion.a
             href="#hero"
             onClick={(e) => { e.preventDefault(); handleNav("#hero"); }}
-            className="flex items-center gap-2 group"
+            className="flex items-center"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-8 h-8 bg-violet-DEFAULT/15 border border-violet-DEFAULT/25 rounded-lg flex items-center justify-center group-hover:bg-violet-DEFAULT/25 transition-colors duration-200">
-              <Zap size={16} className="text-violet-light" />
-            </div>
-            <span className="font-bold text-base tracking-tight text-text">
-              BJP <span className="gradient-text">SISTEMAS</span>
-            </span>
+            <img
+              src="/logo-transparent.png"
+              alt="BJP Sistemas"
+              className="logo-navbar"
+            />
           </motion.a>
 
           {/* Desktop links */}

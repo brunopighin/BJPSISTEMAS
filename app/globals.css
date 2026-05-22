@@ -166,6 +166,10 @@ body {
   50%       { background-position: 100% 50%; }
 }
 
+/* ── Logo ───────────────────────────────────────────────── */
+.logo-navbar { width: 180px !important; height: 180px !important; object-fit: contain; }
+.logo-footer { width: 280px !important; height: 280px !important; object-fit: contain; }
+
 /* ── Section divider ────────────────────────────────────── */
 .section-divider {
   height: 1px;
