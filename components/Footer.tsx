@@ -22,7 +22,7 @@ export default function Footer() {
 
             {/* Brand */}
             <div className="lg:col-span-2">
-              <div className="mb-4">
+              <div className="mb-4 flex justify-center lg:justify-start">
                 <img
                   src="/logo-transparent.png"
                   alt="BJP Sistemas"
