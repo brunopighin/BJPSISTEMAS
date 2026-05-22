@@ -172,6 +172,9 @@ body {
   .logo-navbar { width: 75px !important; height: 75px !important; }
 }
 .logo-footer { width: 280px !important; height: 280px !important; object-fit: contain; }
+@media (max-width: 768px) {
+  .logo-footer { width: 85vw !important; height: 85vw !important; max-width: 340px !important; max-height: 340px !important; }
+}
 
 /* ── Section divider ────────────────────────────────────── */
 .section-divider {
