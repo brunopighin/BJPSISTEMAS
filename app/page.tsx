@@ -6,6 +6,7 @@ import Process from "@/components/Process";
 import TechStack from "@/components/TechStack";
 import AISection from "@/components/AISection";
 import Portfolio from "@/components/Portfolio";
+import AboutSection from "@/components/AboutSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -27,6 +28,7 @@ export default function Home() {
         <TechStack />
         <AISection />
         <Portfolio />
+        <AboutSection />
         <Contact />
       </main>
       <Footer />
