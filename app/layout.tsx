@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bjpsistemas.com"),
   title: "BJP SISTEMAS — Tecnología que transforma negocios",
   description:
     "Desarrollo web, sistemas personalizados, automatización e inteligencia artificial para negocios modernos. BJP SISTEMAS.",
