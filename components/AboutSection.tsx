@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Globe, Settings, Smartphone, Zap, ShoppingCart, Cpu, GraduationCap, Wrench, ArrowRight } from "lucide-react";
 import { scrollToSection } from "@/lib/navUtils";
@@ -84,8 +85,8 @@ export default function AboutSection() {
           >
             {/* Avatar */}
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-DEFAULT to-electric-blue flex items-center justify-center flex-shrink-0 shadow-lg">
-                <span className="text-white font-black text-xl">B</span>
+              <div className="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0 shadow-lg ring-2 ring-violet-DEFAULT/30">
+                <Image src="/bruno.jpg" alt="Bruno Pighin" width={56} height={56} className="w-full h-full object-cover object-top" />
               </div>
               <div>
                 <div className="text-white font-bold text-base leading-tight">Bruno Joaquín Pighin</div>
