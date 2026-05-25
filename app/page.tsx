@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
-import Stats from "@/components/Stats";
 import Process from "@/components/Process";
 import TechStack from "@/components/TechStack";
 import AISection from "@/components/AISection";
@@ -23,7 +22,6 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Stats />
         <Services />
         <Process />
         <TechStack />
