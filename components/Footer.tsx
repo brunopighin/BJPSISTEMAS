@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { Github, Instagram, Linkedin } from "lucide-react";
+import { Instagram } from "lucide-react";
+import { scrollToSection } from "@/lib/navUtils";
 
 const links = {
   servicios: ["Páginas Web", "E-commerce", "Software a Medida", "Sistemas POS", "IA", "Automatización"],
@@ -11,9 +12,6 @@ const links = {
 };
 
 export default function Footer() {
-  const handleNav = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <footer className="relative overflow-hidden">
@@ -36,23 +34,16 @@ export default function Footer() {
                 Transformamos ideas en sistemas inteligentes. Tecnología de alto nivel para empresas modernas.
               </p>
               <div className="flex gap-2">
-                {[
-                  { Icon: Github,   href: "#" },
-                  { Icon: Instagram, href: "https://www.instagram.com/bjpsistemas" },
-                  { Icon: Linkedin,  href: "#" },
-                ].map(({ Icon, href }, i) => (
-                  <motion.a
-                    key={i}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 card flex items-center justify-center text-text-subtle hover:text-text-muted transition-colors duration-200"
-                    whileHover={{ scale: 1.08, y: -1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Icon size={15} />
-                  </motion.a>
-                ))}
+                <motion.a
+                  href="https://www.instagram.com/bjpsistemas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 card flex items-center justify-center text-text-subtle hover:text-text-muted transition-colors duration-200"
+                  whileHover={{ scale: 1.08, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Instagram size={15} />
+                </motion.a>
               </div>
             </div>
 
@@ -63,7 +54,7 @@ export default function Footer() {
                 {links.servicios.map((link) => (
                   <li key={link}>
                     <button
-                      onClick={() => handleNav("#servicios")}
+                      onClick={() => scrollToSection("#servicios")}
                       className="text-sm text-text-muted hover:text-text transition-colors duration-200 text-left"
                     >
                       {link}
@@ -80,7 +71,7 @@ export default function Footer() {
                 {links.empresa.map((link) => (
                   <li key={link.label}>
                     <button
-                      onClick={() => handleNav(link.href)}
+                      onClick={() => scrollToSection(link.href)}
                       className="text-sm text-text-muted hover:text-text transition-colors duration-200 text-left"
                     >
                       {link.label}
@@ -98,7 +89,7 @@ export default function Footer() {
 
           <div className="h-px bg-white/5 mb-6" />
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-text-subtle">
-            <span>© 2025 BJP SISTEMAS. Todos los derechos reservados.</span>
+            <span>© {new Date().getFullYear()} BJP SISTEMAS. Todos los derechos reservados.</span>
             <span>Hecho con pasión en Argentina 🇦🇷</span>
           </div>
         </div>

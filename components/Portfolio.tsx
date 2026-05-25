@@ -1,7 +1,8 @@
 "use client";
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ExternalLink, Code2, Monitor, BarChart3, Smartphone, Bot, Scissors } from "lucide-react";
+import { Code2, Monitor, BarChart3, Smartphone, Bot, Scissors } from "lucide-react";
+import { scrollToSection } from "@/lib/navUtils";
 
 const projects = [
   {
@@ -226,7 +227,7 @@ export default function Portfolio() {
       <div className="absolute inset-0 bg-[#050508]" />
       <div className="absolute inset-0 grid-pattern opacity-15" />
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6 lg:pl-52">
+      <div ref={ref} className="relative max-w-7xl mx-auto px-6">
         {/* Title */}
         <div className="text-center mb-16">
           <motion.div
@@ -235,8 +236,7 @@ export default function Portfolio() {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-electric-cyan/30 text-sm text-electric-cyan mb-6"
           >
-            <ExternalLink size={14} />
-            Proyectos reales
+              Proyectos reales
           </motion.div>
 
           <motion.h2
@@ -310,7 +310,6 @@ export default function Portfolio() {
                       </div>
                       <span className="text-xs text-white/40">{project.category}</span>
                     </div>
-                    <ExternalLink size={14} className="text-white/20 group-hover:text-white/50 transition-colors duration-200" />
                   </div>
 
                   <h3 className="text-base font-bold text-white mb-2 group-hover:text-violet-light transition-colors duration-200">
@@ -353,13 +352,12 @@ export default function Portfolio() {
         >
           <p className="text-white/40 mb-5">¿Querés ver más proyectos o discutir el tuyo?</p>
           <motion.button
-            onClick={() => document.querySelector("#contacto")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => scrollToSection("#contacto")}
             className="group inline-flex items-center gap-2 px-7 py-3.5 glass border border-violet-DEFAULT/40 hover:border-violet-DEFAULT/80 text-white font-semibold rounded-xl transition-all duration-300"
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
             Hablemos de tu proyecto
-            <ExternalLink size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </motion.button>
         </motion.div>
       </div>

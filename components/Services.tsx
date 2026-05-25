@@ -127,7 +127,7 @@ export default function Services() {
       <div className="absolute inset-0 grid-pattern opacity-[0.5]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-DEFAULT/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-6 lg:pl-52">
+      <div className="relative max-w-6xl mx-auto px-6">
         <div ref={titleRef} className="text-center mb-14">
           <motion.div
             initial={{ opacity: 0, y: 16 }}

@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { scrollToSection } from "@/lib/navUtils";
 
 const navLinks = [
   { label: "Inicio",    href: "#hero" },
@@ -12,8 +13,10 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled]         = useState(false);
+  const [mobileOpen, setMobileOpen]     = useState(false);
+  const [activeSection, setActiveSection] = useState("#hero");
+  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -21,10 +24,31 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const ids = navLinks.map((l) => l.href.replace("#", ""));
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.find((e) => e.isIntersecting);
+        if (hit) setActiveSection(`#${hit.target.id}`);
+      },
+      { rootMargin: "-50% 0px -50% 0px" }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, []);
+
   const handleNav = (href: string) => {
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(href);
   };
+
+  const linkClass = (href: string) =>
+    `text-sm transition-colors duration-200 whitespace-nowrap ${
+      activeSection === href ? "text-text font-medium" : "text-text-muted hover:text-text"
+    }`;
 
   return (
     <>
@@ -43,7 +67,7 @@ export default function Navbar() {
           src="/logo-transparent.png"
           alt="BJP Sistemas"
           className="logo-navbar"
-          animate={{ y: [0, -8, 0] }}
+          animate={prefersReduced ? {} : { y: [0, -8, 0] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
         />
       </motion.a>
@@ -65,7 +89,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNav(link.href); }}
-                className="text-sm text-text-muted hover:text-text transition-colors duration-200 whitespace-nowrap"
+                className={linkClass(link.href)}
               >
                 {link.label}
               </a>
@@ -91,7 +115,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNav(link.href); }}
-                className="text-sm text-text-muted hover:text-text transition-colors duration-200 whitespace-nowrap"
+                className={linkClass(link.href)}
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.05 }}
@@ -105,6 +129,7 @@ export default function Navbar() {
 
       {/* Botón mobile */}
       <motion.button
+        aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
         className="fixed top-0 right-4 z-50 md:hidden text-text-muted hover:text-text transition-colors flex items-center"
         style={{ height: "clamp(80px, 15vw, 200px)" }}
         onClick={() => setMobileOpen(!mobileOpen)}
@@ -134,7 +159,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                   onClick={(e) => { e.preventDefault(); handleNav(link.href); }}
-                  className="text-text-muted hover:text-text text-sm font-medium py-3 border-b border-white/5 transition-colors"
+                  className={`${linkClass(link.href)} py-3 border-b border-white/5 font-medium`}
                 >
                   {link.label}
                 </motion.a>

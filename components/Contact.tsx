@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Send, Mail, Phone, MapPin, CheckCircle, Loader2, MessageSquare, ArrowRight } from "lucide-react";
+import { Send, Mail, MapPin, CheckCircle, Loader2, MessageSquare, ArrowRight } from "lucide-react";
 
 const info = [
   { icon: MessageSquare, label: "WhatsApp", value: "+54 9 2323 654029", href: "https://wa.me/5492323654029" },
@@ -46,7 +46,7 @@ export default function Contact() {
     setTimeout(() => {
       setStatus("idle");
       setForm({ name: "", email: "", phone: "", service: "", message: "" });
-    }, 4000);
+    }, 6000);
   };
 
   const inputClass = `w-full bg-white/[0.03] border border-white/8 hover:border-white/15 focus:border-violet-DEFAULT/60 focus:outline-none focus:ring-1 focus:ring-violet-DEFAULT/30 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm transition-all duration-200`;
@@ -60,7 +60,7 @@ export default function Contact() {
       <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-violet-DEFAULT/8 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-electric-cyan/6 rounded-full blur-[100px] pointer-events-none" />
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6 lg:pl-52">
+      <div ref={ref} className="relative max-w-7xl mx-auto px-6">
         {/* Title */}
         <div className="text-center mb-16">
           <motion.div
@@ -118,8 +118,8 @@ export default function Contact() {
                   >
                     <CheckCircle size={32} className="text-green-400" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white mb-3">¡Mensaje enviado!</h3>
-                  <p className="text-white/50">Te contactaremos dentro de las próximas 24 horas.</p>
+                  <h3 className="text-2xl font-bold text-white mb-3">¡WhatsApp listo!</h3>
+                  <p className="text-white/50">Abrimos WhatsApp con tu mensaje. Confirmá el envío desde allí y te respondemos en menos de 24 hs.</p>
                 </motion.div>
               ) : (
                 <motion.form

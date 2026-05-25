@@ -1,16 +1,27 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { scrollToSection } from "@/lib/navUtils";
 
 const TYPING_WORDS = ["inteligentes.", "modernos.", "escalables.", "rentables."];
 
 function TypingEffect() {
+  const prefersReduced = useReducedMotion();
+  // Start with first word so SSR and first client render match
+  const [displayed, setDisplayed] = useState(TYPING_WORDS[0]);
   const [wordIndex, setWordIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
+  // Gate animation until after hydration
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    const t = setTimeout(() => setReady(true), 1800);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (!ready || prefersReduced) return;
     const target = TYPING_WORDS[wordIndex];
     if (!deleting && displayed === target) {
       const t = setTimeout(() => setDeleting(true), 2200);
@@ -26,12 +37,16 @@ function TypingEffect() {
       setDisplayed(deleting ? displayed.slice(0, -1) : target.slice(0, displayed.length + 1));
     }, speed);
     return () => clearTimeout(t);
-  }, [displayed, deleting, wordIndex]);
+  }, [displayed, deleting, wordIndex, prefersReduced, ready]);
+
+  if (prefersReduced) {
+    return <span className="gradient-text">{TYPING_WORDS[0]}</span>;
+  }
 
   return (
     <span className="gradient-text">
       {displayed}
-      <span className="typing-cursor" />
+      {ready && <span className="typing-cursor" />}
     </span>
   );
 }
@@ -44,10 +59,6 @@ const item = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
-
-function handleNav(href: string) {
-  document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-}
 
 export default function Hero() {
   return (
@@ -110,7 +121,7 @@ export default function Hero() {
         {/* Buttons */}
         <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 justify-center">
           <motion.button
-            onClick={() => handleNav("#contacto")}
+            onClick={() => scrollToSection("#contacto")}
             className="group inline-flex items-center gap-2 px-7 py-3.5 bg-violet-DEFAULT hover:bg-violet-soft text-white font-semibold rounded-xl transition-colors duration-200 glow-violet"
             whileHover={{ scale: 1.02, y: -1 }}
             whileTap={{ scale: 0.98 }}
@@ -120,7 +131,7 @@ export default function Hero() {
           </motion.button>
 
           <motion.button
-            onClick={() => handleNav("#portfolio")}
+            onClick={() => scrollToSection("#portfolio")}
             className="inline-flex items-center gap-2 px-7 py-3.5 glass hover:border-white/15 text-text-muted hover:text-text font-semibold rounded-xl transition-all duration-200"
             whileHover={{ scale: 1.02, y: -1 }}
             whileTap={{ scale: 0.98 }}

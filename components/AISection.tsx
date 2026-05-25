@@ -43,7 +43,7 @@ export default function AISection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-DEFAULT/6 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-1/3 right-1/4 w-[250px] h-[250px] bg-accent/5 rounded-full blur-[80px] pointer-events-none" />
 
-      <div ref={ref} className="relative max-w-6xl mx-auto px-6 lg:pl-52">
+      <div ref={ref} className="relative max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
 
           {/* Left */}
