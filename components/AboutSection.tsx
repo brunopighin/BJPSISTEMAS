@@ -115,7 +115,7 @@ export default function AboutSection() {
 
             {/* Quote */}
             <p className="text-sm text-text-muted leading-relaxed italic">
-              "Apasionado por la tecnología, la automatización y el desarrollo de herramientas que simplifiquen procesos."
+              &ldquo;Apasionado por la tecnología, la automatización y el desarrollo de herramientas que simplifiquen procesos.&rdquo;
             </p>
           </motion.div>
 
