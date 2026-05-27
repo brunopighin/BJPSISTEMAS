@@ -2,17 +2,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { Globe, Settings, Smartphone, Zap, ShoppingCart, Cpu, GraduationCap, Wrench, ArrowRight } from "lucide-react";
-import { scrollToSection } from "@/lib/navUtils";
-
-const whatWeDo = [
-  { icon: Globe,       label: "Desarrollo Web" },
-  { icon: Settings,    label: "Sistemas Personalizados" },
-  { icon: Smartphone,  label: "Integraciones Digitales" },
-  { icon: Zap,         label: "Automatización" },
-  { icon: ShoppingCart,label: "Soluciones para negocios" },
-  { icon: Cpu,         label: "Innovación tecnológica" },
-];
+import { GraduationCap, Wrench } from "lucide-react";
 
 const services = [
   "Páginas web profesionales",
@@ -112,12 +102,6 @@ export default function AboutSection() {
               </div>
             </div>
 
-            <div className="h-px bg-white/5" />
-
-            {/* Quote */}
-            <p className="text-sm text-text-muted leading-relaxed italic">
-              &ldquo;Apasionado por la tecnología, la automatización y el desarrollo de herramientas que simplifiquen procesos.&rdquo;
-            </p>
           </motion.div>
 
           {/* Text content */}
@@ -128,10 +112,7 @@ export default function AboutSection() {
             className="flex flex-col gap-6"
           >
             <p className="text-text-muted text-lg leading-relaxed">
-              En BJP Sistemas creemos que la tecnología no solo debe verse bien,
-              sino también <span className="text-text font-medium">resolver problemas reales</span>.
-              Nuestro enfoque combina diseño moderno, funcionalidad y cercanía
-              con el cliente, buscando crear herramientas simples, eficientes y escalables.
+              Mi nombre es Bruno Joaquín Pighin, fundador de BJP Sistemas. Soy estudiante de programación en la UTN y técnico electromecánico, apasionado por la tecnología, la automatización y el desarrollo de herramientas que simplifiquen procesos y ayuden a crecer a cada cliente.
             </p>
 
             {/* Services list */}
@@ -155,49 +136,8 @@ export default function AboutSection() {
               </ul>
             </div>
 
-            <motion.button
-              onClick={() => scrollToSection("#contacto")}
-              className="group self-start inline-flex items-center gap-2 px-6 py-3 bg-violet-DEFAULT hover:bg-violet-soft text-white font-semibold rounded-xl transition-colors duration-200 glow-violet text-sm"
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Hablemos de tu proyecto
-              <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
-            </motion.button>
           </motion.div>
         </div>
-
-        {/* What we do grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-          <p className="text-center text-xs font-semibold text-text uppercase tracking-wider mb-6">
-            ¿Qué hacemos?
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {whatWeDo.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.65 + i * 0.07 }}
-                  className="group glass border border-white/5 hover:border-violet-DEFAULT/30 rounded-2xl p-4 flex flex-col items-center gap-3 text-center transition-all duration-300 cursor-default"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-violet-DEFAULT/10 border border-violet-DEFAULT/20 flex items-center justify-center group-hover:bg-violet-DEFAULT/20 transition-colors duration-200">
-                    <Icon size={18} className="text-violet-light" />
-                  </div>
-                  <span className="text-xs font-medium text-text-muted group-hover:text-text transition-colors duration-200 leading-snug">
-                    {item.label}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
 
       </div>
     </section>
