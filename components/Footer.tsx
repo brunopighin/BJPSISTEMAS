@@ -90,7 +90,18 @@ export default function Footer() {
           <div className="h-px bg-white/5 mb-6" />
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-text-subtle">
             <span>© {new Date().getFullYear()} BJP SISTEMAS. Todos los derechos reservados.</span>
-            <span>Hecho con pasión en Argentina 🇦🇷</span>
+            <div className="flex items-center gap-3">
+              <span>Hecho con pasión en Argentina 🇦🇷</span>
+              <span className="w-px h-3 bg-white/10" />
+              <a
+                href="https://www.instagram.com/bjpsistemas"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-violet-light transition-colors duration-200"
+              >
+                Desarrollado por BJP Sistemas
+              </a>
+            </div>
           </div>
         </div>
       </div>
