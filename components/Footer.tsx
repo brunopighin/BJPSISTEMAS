@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
 import { scrollToSection } from "@/lib/navUtils";
@@ -24,9 +25,11 @@ export default function Footer() {
             {/* Brand */}
             <div className="lg:col-span-2">
               <div className="mb-4 flex justify-center lg:justify-start">
-                <img
+                <Image
                   src="/logo-transparent.png"
                   alt="BJP Sistemas"
+                  width={160}
+                  height={60}
                   className="logo-footer"
                 />
               </div>
