@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import BotpressChat from "@/components/BotpressChat";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bjpsistemas.com"),
@@ -77,6 +78,7 @@ export default function RootLayout({
       </head>
       <body className="bg-[#050508] text-white antialiased overflow-x-hidden">
         {children}
+        <BotpressChat />
       </body>
     </html>
   );
