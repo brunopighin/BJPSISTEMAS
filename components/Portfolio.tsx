@@ -1,10 +1,22 @@
 "use client";
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Code2, Monitor, BarChart3, Smartphone, Bot, Scissors } from "lucide-react";
+import { Code2, Monitor, BarChart3, Smartphone, Bot, Scissors, Home } from "lucide-react";
 import { scrollToSection } from "@/lib/navUtils";
 
 const projects = [
+  {
+    title: "Silvana Parodi Propiedades",
+    category: "Sistema Inmobiliario",
+    description: "Web pública con listado de propiedades, galería de imágenes y panel admin para gestión completa.",
+    gradient: "from-emerald-600 via-teal-600 to-cyan-600",
+    bg: "from-emerald-600/20 to-cyan-600/10",
+    icon: Home,
+    tags: ["React", "Node.js", "PostgreSQL"],
+    accent: "#10B981",
+    mockupType: "realestate",
+    link: "https://www.silvanaparodipropiedades.com",
+  },
   {
     title: "Panel Administrativo",
     category: "Dashboard",
@@ -195,6 +207,39 @@ function MockupUI({ type, accent }: { type: string; accent: string }) {
     );
   }
 
+  if (type === "realestate") {
+    return (
+      <div className="p-3 h-full flex flex-col gap-2">
+        <div className="flex gap-1.5 bg-white/5 rounded-lg px-2 py-1.5 items-center">
+          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: accent, opacity: 0.7 }} />
+          <div className="h-1.5 flex-1 bg-white/10 rounded" />
+          <div className="text-[8px] font-bold" style={{ color: accent }}>Buscar</div>
+        </div>
+        <div className="flex-1 flex flex-col gap-1.5">
+          {[
+            { label: "Casa en venta", price: "$120.000", loc: "Bragado", rooms: "3 amb" },
+            { label: "Departamento", price: "$65.000", loc: "Bragado Centro", rooms: "2 amb" },
+          ].map((prop, i) => (
+            <div key={i} className="flex gap-2 bg-white/5 rounded-lg overflow-hidden">
+              <div className="w-16 flex-shrink-0 rounded-l-lg" style={{ backgroundColor: `${accent}25`, minHeight: 36 }}>
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-5 h-5 opacity-40" style={{ color: accent }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 py-1.5 pr-2">
+                <div className="text-[9px] text-white/70 font-medium">{prop.label}</div>
+                <div className="text-[10px] font-bold" style={{ color: accent }}>{prop.price}</div>
+                <div className="text-[8px] text-white/30">{prop.loc} · {prop.rooms}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-3 h-full flex flex-col gap-2">
       <div className="flex gap-1.5">
@@ -310,6 +355,12 @@ export default function Portfolio() {
                       </div>
                       <span className="text-xs text-white/40">{project.category}</span>
                     </div>
+                    {"link" in project && project.link && (
+                      <span className="flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full" style={{ backgroundColor: `${project.accent}20`, color: project.accent }}>
+                        <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: project.accent }} />
+                        LIVE
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-base font-bold text-white mb-2 group-hover:text-violet-light transition-colors duration-200">
@@ -317,7 +368,7 @@ export default function Portfolio() {
                   </h3>
                   <p className="text-xs text-white/40 leading-relaxed mb-4">{project.description}</p>
 
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5 mb-3">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
@@ -332,6 +383,18 @@ export default function Portfolio() {
                       </span>
                     ))}
                   </div>
+                  {"link" in project && project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[10px] font-semibold transition-colors duration-200"
+                      style={{ color: project.accent }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Ver sitio →
+                    </a>
+                  )}
                 </div>
 
                 {/* Bottom accent line */}
