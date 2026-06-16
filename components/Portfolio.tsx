@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Code2, Monitor, BarChart3, Smartphone, Bot, Scissors, Home } from "lucide-react";
+import { Code2, Monitor, BarChart3, Smartphone, Bot, Scissors, Home, Fence } from "lucide-react";
 import { scrollToSection } from "@/lib/navUtils";
 
 const projects = [
@@ -16,6 +16,18 @@ const projects = [
     accent: "#10B981",
     mockupType: "realestate",
     link: "https://www.silvanaparodipropiedades.com",
+  },
+  {
+    title: "Cubre Cercos Las Casuarinas",
+    category: "Sitio Web Comercial",
+    description: "Sitio con galería de instalaciones, calculadora de m² interactiva y contacto por WhatsApp.",
+    gradient: "from-green-700 via-lime-700 to-green-600",
+    bg: "from-green-700/20 to-lime-600/10",
+    icon: Fence,
+    tags: ["React", "Vite", "Tailwind"],
+    accent: "#5B8A3C",
+    mockupType: "fencecover",
+    link: "https://cubrecercoslascasuarinas.netlify.app/",
   },
   {
     title: "Panel Administrativo",
@@ -235,6 +247,44 @@ function MockupUI({ type, accent }: { type: string; accent: string }) {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "fencecover") {
+    const swatches = [
+      { name: "Musgo", color: "#5B8A3C" },
+      { name: "Marrón", color: "#7B5C3A" },
+      { name: "Gris", color: "#6B7280" },
+      { name: "Negro", color: "#1F2937" },
+    ];
+    return (
+      <div className="p-3 h-full flex flex-col gap-2">
+        <div className="flex gap-1.5">
+          {swatches.map((s) => (
+            <div key={s.name} className="flex-1 flex flex-col items-center gap-1">
+              <div className="w-full aspect-square rounded-lg border border-white/10" style={{ backgroundColor: s.color }} />
+              <div className="text-[7px] text-white/30">{s.name}</div>
+            </div>
+          ))}
+        </div>
+        <div className="flex-1 bg-white/5 rounded-lg p-2 flex flex-col justify-between">
+          <div className="text-[8px] text-white/40 mb-1">Calculadora m²</div>
+          <div className="flex gap-1.5 items-center">
+            <div className="flex-1 bg-white/10 rounded px-2 py-1">
+              <div className="text-[8px] text-white/30">Ancho</div>
+              <div className="text-[10px] font-bold" style={{ color: accent }}>10 m</div>
+            </div>
+            <div className="text-white/20 text-xs">×</div>
+            <div className="flex-1 bg-white/10 rounded px-2 py-1">
+              <div className="text-[8px] text-white/30">Alto</div>
+              <div className="text-[10px] font-bold" style={{ color: accent }}>1.8 m</div>
+            </div>
+          </div>
+          <div className="mt-1.5 rounded-lg py-1.5 text-center text-[9px] font-bold text-white" style={{ backgroundColor: accent }}>
+            = 18 m² · Cotizar por WhatsApp
+          </div>
         </div>
       </div>
     );
