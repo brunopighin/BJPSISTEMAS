@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Code2, Monitor, BarChart3, Smartphone, Bot, Scissors, Home, Fence } from "lucide-react";
+import { Code2, Monitor, BarChart3, Smartphone, Bot, Scissors, Home, Fence, PawPrint } from "lucide-react";
 import { scrollToSection } from "@/lib/navUtils";
 
 const projects = [
@@ -28,6 +28,18 @@ const projects = [
     accent: "#5B8A3C",
     mockupType: "fencecover",
     link: "https://cubrecercoslascasuarinas.netlify.app/",
+  },
+  {
+    title: "Equitación y Doma Nativa",
+    category: "Plataforma Educativa",
+    description: "Web con clases de equitación, formación de profesores y venta de cursos digitales con galería y contacto por WhatsApp.",
+    gradient: "from-amber-700 via-orange-700 to-amber-600",
+    bg: "from-amber-700/20 to-orange-600/10",
+    icon: PawPrint,
+    tags: ["React", "Vite", "Tailwind"],
+    accent: "#B45309",
+    mockupType: "equestrian",
+    link: "https://www.equitacionydomanativa.shop/",
   },
   {
     title: "Panel Administrativo",
@@ -285,6 +297,29 @@ function MockupUI({ type, accent }: { type: string; accent: string }) {
           <div className="mt-1.5 rounded-lg py-1.5 text-center text-[9px] font-bold text-white" style={{ backgroundColor: accent }}>
             = 18 m² · Cotizar por WhatsApp
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "equestrian") {
+    return (
+      <div className="p-3 h-full flex flex-col gap-2">
+        <div className="flex gap-1.5">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex-1 aspect-square rounded-lg" style={{ backgroundColor: `${accent}${20 + i * 10}` }} />
+          ))}
+        </div>
+        <div className="flex-1 bg-white/5 rounded-lg p-2 flex flex-col gap-1.5">
+          <div className="text-[8px] text-white/40">Curso de formación</div>
+          <div className="flex items-center justify-between">
+            <div className="h-1.5 w-16 bg-white/10 rounded" />
+            <div className="text-[10px] font-bold" style={{ color: accent }}>$25.000</div>
+          </div>
+          <div className="h-1.5 w-20 bg-white/5 rounded" />
+        </div>
+        <div className="rounded-lg py-1.5 text-center text-[9px] font-bold text-white" style={{ backgroundColor: accent }}>
+          Reservar clase por WhatsApp
         </div>
       </div>
     );
