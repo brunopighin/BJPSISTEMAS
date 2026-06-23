@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { GraduationCap, Wrench } from "lucide-react";
+import { GraduationCap, Wrench, ClipboardCheck } from "lucide-react";
 
 const services = [
   "Páginas web profesionales",
@@ -100,6 +100,12 @@ export default function AboutSection() {
                 </div>
                 <span className="text-sm text-text-muted leading-snug">Técnico electromecánico</span>
               </div>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-electric-cyan/10 border border-electric-cyan/20 flex items-center justify-center flex-shrink-0">
+                  <ClipboardCheck size={15} className="text-electric-cyan" />
+                </div>
+                <span className="text-sm text-text-muted leading-snug">QA Tester Manual · Coderhouse</span>
+              </div>
             </div>
 
           </motion.div>
@@ -112,7 +118,7 @@ export default function AboutSection() {
             className="flex flex-col gap-6"
           >
             <p className="text-text-muted text-lg leading-relaxed">
-              Mi nombre es Bruno Joaquín Pighin, fundador de BJP Sistemas. Soy estudiante de programación en la UTN y técnico electromecánico, apasionado por la tecnología, la automatización y el desarrollo de herramientas que simplifiquen procesos y ayuden a crecer a cada cliente.
+              Mi nombre es Bruno Joaquín Pighin, fundador de BJP Sistemas. Soy estudiante de programación en la UTN, técnico electromecánico y QA Tester Manual formado en Coderhouse, apasionado por la tecnología, la automatización y el desarrollo de herramientas que simplifiquen procesos y ayuden a crecer a cada cliente.
             </p>
 
             {/* Services list */}
