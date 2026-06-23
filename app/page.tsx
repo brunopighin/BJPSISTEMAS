@@ -10,7 +10,6 @@ import AboutSection from "@/components/AboutSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
-const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"), { ssr: false });
 const IntroScreen = dynamic(() => import("@/components/IntroScreen"), { ssr: false });
 
@@ -18,7 +17,6 @@ export default function Home() {
   return (
     <>
       <IntroScreen />
-      <CustomCursor />
       <WhatsAppButton />
       <Navbar />
       <main>
